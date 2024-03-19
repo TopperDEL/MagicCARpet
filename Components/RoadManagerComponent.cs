@@ -1,4 +1,5 @@
 ﻿using MagicCARpet.Contracts.Messages;
+using MagicCARpet.Contracts.Models;
 using MvvmGen.Events;
 using StereoKit.Framework;
 using System;
@@ -11,6 +12,7 @@ namespace MagicCARpet.Components
 {
     internal class RoadManagerComponent : IStepper, IEventSubscriber<AddRoadNodeMessage>
     {
+        private Graph _roadGraph;
         private readonly IEventAggregator _eventAggregator;
 
         public RoadManagerComponent(IEventAggregator eventAggregator)
@@ -24,6 +26,7 @@ namespace MagicCARpet.Components
         public bool Initialize()
         {
             _eventAggregator.RegisterSubscriber(this);
+            _roadGraph = new Graph();
             return true;
         }
 
@@ -36,8 +39,18 @@ namespace MagicCARpet.Components
         {
         }
 
+        private Node _previousNode;
+
         public void OnEvent(AddRoadNodeMessage eventData)
         {
+            var createdNode = _roadGraph.AddNode(Guid.NewGuid().ToString(), eventData.position);
+
+            if (_previousNode != null)
+            {
+                _roadGraph.AddConnection(_previousNode, createdNode, (eventData.position - _previousNode.Position).Length());
+            }
+
+            _previousNode = createdNode;
         }
     }
 }

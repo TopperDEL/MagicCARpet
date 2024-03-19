@@ -39,6 +39,7 @@
 		<Compile Remove="..\..\**\*.Net.cs" />
 		<Compile Remove="..\..\Platforms\Net\**\*.cs" />
 		<ProjectReference Include="..\MagicCARpet.Contracts\MagicCARpet.Contracts.csproj" />
+		<ProjectReference Include="..\MagicCARpet.Services\MagicCARpet.Services.csproj" />
 
 		<!--Hide everything in this project, otherwise it's a lot of
 		    duplication that creates noise.-->

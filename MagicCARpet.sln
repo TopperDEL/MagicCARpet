@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicCARpet", "MagicCARpet.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicCARpet.Android", "Projects\Android\MagicCARpet.Android.csproj", "{7158753D-8E95-4A5A-9E09-AF84A7010EB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicCARpet.Contracts", "Projects\MagicCARpet.Contracts\MagicCARpet.Contracts.csproj", "{5129BEB5-32F4-4FDD-9DF7-F04846AB534D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MagicCARpet.Contracts", "Projects\MagicCARpet.Contracts\MagicCARpet.Contracts.csproj", "{5129BEB5-32F4-4FDD-9DF7-F04846AB534D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicCARpet.Services", "Projects\MagicCARpet.Services\MagicCARpet.Services.csproj", "{85951C1C-7101-42B4-823A-488841B19BF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +31,10 @@ Global
 		{5129BEB5-32F4-4FDD-9DF7-F04846AB534D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5129BEB5-32F4-4FDD-9DF7-F04846AB534D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5129BEB5-32F4-4FDD-9DF7-F04846AB534D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85951C1C-7101-42B4-823A-488841B19BF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85951C1C-7101-42B4-823A-488841B19BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85951C1C-7101-42B4-823A-488841B19BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85951C1C-7101-42B4-823A-488841B19BF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

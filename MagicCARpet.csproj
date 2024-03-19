@@ -26,5 +26,6 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="Projects\MagicCARpet.Contracts\MagicCARpet.Contracts.csproj" />
+	  <ProjectReference Include="Projects\MagicCARpet.Services\MagicCARpet.Services.csproj" />
 	</ItemGroup>
 </Project>
