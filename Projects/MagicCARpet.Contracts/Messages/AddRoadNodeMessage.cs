@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace MagicCARpet.Contracts.Messages
 {
-    public record AddRoadNodeMessage(Vector3 position);
+    public record AddRoadNodeMessage(Vector3 Position);
 }

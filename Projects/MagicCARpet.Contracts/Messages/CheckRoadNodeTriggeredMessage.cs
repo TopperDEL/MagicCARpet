@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace MagicCARpet.Contracts.Messages
 {
-    public record PinchHappenedMessage(Vector3 Position);
+    public record CheckRoadNodeTriggeredMessage(Vector3 Position, Action<bool, string> ResultFunction);
 }

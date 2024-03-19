@@ -28,5 +28,7 @@ namespace MagicCARpet.Contracts.Models
         {
             source.Connections.Add((target, weight));
         }
+
+        public IEnumerable<Node> Nodes => nodes;
     }
 }

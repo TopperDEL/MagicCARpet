@@ -10,7 +10,10 @@ using System.Threading.Tasks;
 
 namespace MagicCARpet.Components
 {
-    internal class RoadManagerComponent : IStepper, IEventSubscriber<AddRoadNodeMessage>
+    internal class RoadManagerComponent : IStepper,
+        IEventSubscriber<AddRoadNodeMessage>,
+        IEventSubscriber<CheckRoadNodeTriggeredMessage>,
+        IEventSubscriber<RoadNodeGotTriggeredMessage>
     {
         private Graph _roadGraph;
         private readonly IEventAggregator _eventAggregator;
@@ -43,14 +46,31 @@ namespace MagicCARpet.Components
 
         public void OnEvent(AddRoadNodeMessage eventData)
         {
-            var createdNode = _roadGraph.AddNode(Guid.NewGuid().ToString(), eventData.position);
+            var createdNode = _roadGraph.AddNode(Guid.NewGuid().ToString(), eventData.Position);
 
             if (_previousNode != null)
             {
-                _roadGraph.AddConnection(_previousNode, createdNode, (eventData.position - _previousNode.Position).Length());
+                _roadGraph.AddConnection(_previousNode, createdNode, (eventData.Position - _previousNode.Position).Length());
             }
 
             _previousNode = createdNode;
+        }
+
+        public void OnEvent(CheckRoadNodeTriggeredMessage eventData)
+        {
+            foreach(var node in _roadGraph.Nodes)
+            {
+                if((node.Position - eventData.Position).Length() < 0.1f)
+                {
+                    eventData.ResultFunction(true, node.Id);
+                    return;
+                }
+            }
+        }
+
+        public void OnEvent(RoadNodeGotTriggeredMessage eventData)
+        {
+            _previousNode = _roadGraph.Nodes.First(n => n.Id == eventData.NodeId);
         }
     }
 }

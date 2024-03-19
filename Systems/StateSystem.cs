@@ -37,7 +37,19 @@ namespace MagicCARpet.Systems
         {
             if(_currentState == States.DrawingRoads)
             {
-                _eventAggregator.Publish(new AddRoadNodeMessage(eventData.position));
+                bool gotTriggered = false;
+                //Check if the pinch happened on a road node
+                _eventAggregator.Publish(new CheckRoadNodeTriggeredMessage(eventData.Position, (nodeGotTriggered, nodeId) =>
+                {
+                    gotTriggered = nodeGotTriggered;
+
+                    _eventAggregator.Publish(new RoadNodeGotTriggeredMessage(nodeId));
+                }));
+
+                if (!gotTriggered)
+                {
+                    _eventAggregator.Publish(new AddRoadNodeMessage(eventData.Position));
+                }
             }
         }
 
