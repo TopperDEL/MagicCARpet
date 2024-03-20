@@ -1,4 +1,5 @@
 ﻿using MagicCARpet.Components;
+using MagicCARpet.Helper;
 using MagicCARpet.Systems;
 using MvvmGen.Events;
 using StereoKit;
@@ -11,8 +12,10 @@ class Program
 
 	static void Main(string[] args)
 	{
-		// Initialize StereoKit
-		SKSettings settings = new SKSettings
+        SK.AddStepper(new PassthroughFBExt { Enabled = true });
+
+        // Initialize StereoKit
+        SKSettings settings = new SKSettings
 		{
 			appName = "MagicCARpet",
 			assetsFolder = "Assets",
