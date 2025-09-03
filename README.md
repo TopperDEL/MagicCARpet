@@ -2,6 +2,8 @@
 
 MagicCARpet is an innovative app that brings the imagination of children to life by blending the physical and digital worlds. Utilizing the latest in AR/VR technology, users can place nodes that represent streets in a virtual environment. Between these nodes, toy cars in 3D will move around, creating a dynamic and interactive cityscape.
 
+The goal of the project is to build a StereoKit-based AR application where users lay out virtual roads in real space by placing nodes with simple gestures. A path can be started and extended by dropping new nodes, which automatically connect like streets. Additional paths may branch off existing nodes. These connections are rendered as roads, and virtual cars traverse them with collision checks and randomized routes, forming a lively digital city—perfect for playing on top of a real-world carpet.
+
 ## Features
 
 - **AR/VR Capabilities**: MagicCARpet leverages augmented and virtual reality to create a seamless and immersive experience. Users can interact with the app in a fully three-dimensional space, placing nodes that become the streets of a bustling city.
