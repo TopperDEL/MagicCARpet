@@ -14,7 +14,8 @@ namespace MagicCARpet.Components
     internal class RoadManagerComponent : IStepper,
         IEventSubscriber<AddRoadNodeMessage>,
         IEventSubscriber<CheckRoadNodeTriggeredMessage>,
-        IEventSubscriber<RoadNodeGotTriggeredMessage>
+        IEventSubscriber<RoadNodeGotTriggeredMessage>,
+        IEventSubscriber<RequestRoadGraphMessage>
     {
         private Graph _roadGraph;
         private Model _cube;
@@ -95,6 +96,11 @@ namespace MagicCARpet.Components
         public void OnEvent(RoadNodeGotTriggeredMessage eventData)
         {
             _previousNode = _roadGraph.Nodes.First(n => n.Id == eventData.NodeId);
+        }
+
+        public void OnEvent(RequestRoadGraphMessage eventData)
+        {
+            eventData.ResultCallback(_roadGraph);
         }
     }
 }

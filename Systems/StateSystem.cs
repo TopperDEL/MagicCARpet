@@ -1,20 +1,11 @@
-﻿using MagicCARpet.Contracts.Messages;
+using MagicCARpet.Contracts.Messages;
+using MagicCARpet.Contracts.Models;
 using MvvmGen.Events;
+using StereoKit;
 using StereoKit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MagicCARpet.Systems
 {
-    public enum States
-    {
-        DrawingRoads,
-        Running
-    }
-
     internal class StateSystem : IStepper, IEventSubscriber<PinchHappenedMessage>
     {
         private readonly IEventAggregator _eventAggregator;
@@ -30,12 +21,13 @@ namespace MagicCARpet.Systems
         public bool Initialize()
         {
             _eventAggregator.RegisterSubscriber(this);
+            _eventAggregator.Publish(new StateChangedMessage(_currentState));
             return true;
         }
 
         public void OnEvent(PinchHappenedMessage eventData)
         {
-            if(_currentState == States.DrawingRoads)
+            if (_currentState == States.DrawingRoads)
             {
                 bool gotTriggered = false;
                 //Check if the pinch happened on a road node
@@ -60,6 +52,12 @@ namespace MagicCARpet.Systems
 
         public void Step()
         {
+            if (Input.Key(Key.Space).IsJustActive())
+            {
+                var newState = _currentState == States.DrawingRoads ? States.Running : States.DrawingRoads;
+                _currentState = newState;
+                _eventAggregator.Publish(new StateChangedMessage(newState));
+            }
         }
     }
 }

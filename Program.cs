@@ -26,9 +26,10 @@ class Program
 		EventAggregator = new EventAggregator();
 
 		//Activate steppers
-		SK.AddStepper(new GestureRecognizerComponent(EventAggregator));
-		SK.AddStepper(new StateSystem(EventAggregator));
-		SK.AddStepper(new RoadManagerComponent(EventAggregator));
+        SK.AddStepper(new GestureRecognizerComponent(EventAggregator));
+        SK.AddStepper(new StateSystem(EventAggregator));
+        SK.AddStepper(new RoadManagerComponent(EventAggregator));
+        SK.AddStepper(new CarManagerComponent(EventAggregator));
 
         // Create assets used by the app
         Pose  cubePose = new Pose(0, 0, -0.5f);
